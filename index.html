@@ -3,37 +3,41 @@
 <head>
 <style>
 #frame {
-  position: absolute;
   width: 300px;
   height: 300px;
-  border: 20px solid black;
-  border-radius: 3000px;
-  box-sizing: content-box;
-  overflow: hidden;
-}
-#date {
-  position: absolute;
-  width: 300px;
-  height: 100px;
-  background: red;
-  box-sizing: content-box;
+  background-image: url(https://s-media-cache-ak0.pinimg.com/564x/3c/61/d1/3c61d15d033b4093a632e7df001b855f.jpg);
+  background-size: cover;    
 }
 #time {
-  position: absolute;
-  top: 100px;
-  width: 300px;
-  height: 200px;
-  background: blue;
-  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  background-image: url(https://marylandlearninglinks.org/wp-content/themes/learning-links/img/compass-needle.png);
+  background-size: cover;
 }
 </style>
 </head>
 <body>
 <div id="frame">
-  <div id="date">
-  </div>
   <div id="time">
   </div>
 </div>
+<script>
+var date;
+var timeElem = document.getElementById("time");
+
+//Rotate the needle by changing its css style regarding current second
+var rotate = function( elem, range, value ) {
+  elem.style.transform = "rotate(" + (value/range*360) + "deg)";
+};
+
+//check current time and rotate the needle
+var watch = function() {
+  date = new Date();
+  rotate( timeElem, 60, date.getSeconds() );  
+};
+
+//update watch in every 1000 milliseconds
+setInterval( watch, 1000 );
+</script>
 </body>
 </html>
