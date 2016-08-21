@@ -6,60 +6,69 @@
 #frame {
   display: table;
   margin: auto;
-  position: relative;
   width: 300px;
   height: 300px;
-  overflow: hidden;
-  background-image: url(digital_face.png);
+  background-image: url(http://image.shutterstock.com/z/stock-vector-classic-watch-face-34207822.jpg);
   background-size: cover;   
+  position: relative;
 }
-#time {
-  position: absolute;
-  left: 50px;
-  top: 65px;
-  width: 170px;
-  height: 60px;
-  font: lighter 50px "helvetica neue";
-  background: white;
+#sec { 
+  positon: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(http://www.clipartbest.com/cliparts/KTj/gLx/KTjgLxzLc.png);
+  background-size: cover;
 }
-#date {
+#min {
   position: absolute;
-  left: 60px;
-  top: 120px;
-  width: 160px;
-  height: 20px;
-  padding-left: 15px;
-  font: lighter 20px "helvetica neue";
-  background: white;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(http://paulrhayes.com/experiments/clock/images/minuteHand.png);
+  background-size: cover;
+}
+#hour {
+  positon: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(http://3.bp.blogspot.com/-PnFn6SJ_hTo/Ttoj6xrPOtI/AAAAAAAABtQ/DfmIrfwxtyQ/s400/hourHand.png);
+  background-size: cover;
 }
 </style>
 </head>
 <body>
 <div id="frame">
-  <div id="time">
-   00:00:00
+  <div id="sec">
   </div>
-  <div id="date">
+  <div id="min">
+  </div>
+  <div id="hour">
   </div>
 </div>
 <script>
 var date;
-var timeElem = document.getElementById("time");
-var dateElem = document.getElementById("date");
-//To make sure showing two digit string (5 -> 05)
-var stringify = function( number ) {
-   if( number >= 10 ) {
-     return number + "";
-   } else {
-     return "0" + number;
-   }
+var secElem = document.getElementById("sec");
+var minElem = document.getElementById("min");
+var hourElem = document.getElementById("hour");
+
+//Rotate the needle by changing its css style
+var rotate = function( elem, range, value ) {
+  elem.style.transform = "rotate(" + (value/range*360) + "deg)";
 };
-//Update watch by checking current time and make a sting out of it.
+
+//check current time and rotate hands
 var watch = function() {
   date = new Date();
-  timeElem.innerHTML = stringify( date.getHours() ) + ":" + stringify( date.getMinutes() ) + ":" + stringify( date.getSeconds() );
-  dateElem.innerHTML = date.toDateString();
+  rotate( secElem, 60, date.getSeconds() ); 
+  rotate( minElem, 60, date.getMinutes() );
+  rotate( hourElem, 12, date.getHours() );
 };
+
 //update watch in every 1000 milliseconds
 setInterval( watch, 1000 );
 </script>
