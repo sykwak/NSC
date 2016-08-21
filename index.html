@@ -9,37 +9,57 @@
   position: relative;
   width: 300px;
   height: 300px;
-  background-image: url(https://s-media-cache-ak0.pinimg.com/564x/3c/61/d1/3c61d15d033b4093a632e7df001b855f.jpg);
-  background-size: cover;    
+  overflow: hidden;
+  background-image: url(https://lh4.ggpht.com/NZTIW0t42T9a7i1e22WIKmOWkcwRXognjCR2lqyhIhUXSoZLu4AO131M1HbqgH1_R8Y=w300);
+  background-size: cover;   
 }
 #time {
-  width: 100%;
-  height: 100%;
-  background-image: url(https://marylandlearninglinks.org/wp-content/themes/learning-links/img/compass-needle.png);
-  background-size: cover;
+  position: absolute;
+  left: 50px;
+  top: 65px;
+  width: 170px;
+  height: 60px;
+  font: lighter 50px "helvetica neue";
+  background: white;
+}
+#date {
+  position: absolute;
+  left: 60px;
+  top: 120px;
+  width: 160px;
+  height: 20px;
+  padding-left: 15px;
+  font: lighter 20px "helvetica neue";
+  background: white;
 }
 </style>
 </head>
 <body>
 <div id="frame">
   <div id="time">
+   00:00:00
+  </div>
+  <div id="date">
   </div>
 </div>
 <script>
 var date;
 var timeElem = document.getElementById("time");
-
-//Rotate the needle by changing its css style regarding current second
-var rotate = function( elem, range, value ) {
-  elem.style.transform = "rotate(" + (value/range*360) + "deg)";
+var dateElem = document.getElementById("date");
+//To make sure showing two digit string (5 -> 05)
+var stringify = function( number ) {
+   if( number >= 10 ) {
+     return number + "";
+   } else {
+     return "0" + number;
+   }
 };
-
-//check current time and rotate the needle
+//Update watch by checking current time and make a sting out of it.
 var watch = function() {
   date = new Date();
-  rotate( timeElem, 60, date.getSeconds() );  
+  timeElem.innerHTML = stringify( date.getHours() ) + ":" + stringify( date.getMinutes() ) + ":" + stringify( date.getSeconds() );
+  dateElem.innerHTML = date.toDateString();
 };
-
 //update watch in every 1000 milliseconds
 setInterval( watch, 1000 );
 </script>
