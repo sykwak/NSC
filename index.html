@@ -67,7 +67,7 @@ var watch = function() {
   date = new Date();
   rotate( secElem, 60, date.getSeconds() ); 
   rotate( minElem, 60, date.getMinutes() );
-  rotate( hourElem, 12, date.getHours() );
+  rotate( hourElem, 12, date.getHours() + date.getMinutes()/60 );
 };
 
 //update watch in every 1000 milliseconds
