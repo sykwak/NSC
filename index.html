@@ -41,6 +41,14 @@
   background-size: cover;
 }
 </style>
+<script> 
+var userAgent = navigator.userAgent.toLowerCase();
+if(userAgent.match('iphone')) { 
+    document.write('<link rel="apple-touch-icon" href="icon_114.png" />') 
+} else if(userAgent.match('android')) { 
+    document.write('<link rel="shortcut icon" href="icon_72.png" />') 
+} 
+</script>
 </head>
 <body>
 <div id="frame">
@@ -51,7 +59,7 @@
   <div id="hour">
   </div>
 </div>
-<script>
+<script>  
 var date;
 var secElem = document.getElementById("sec");
 var minElem = document.getElementById("min");
