@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content = "width = device-width, initial-scale = 1.0, minimum-scale = 1, maximum-scale = 1, user-scalable = no" />
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/manifest.json">
 <link rel="icon" sizes="192x192" href="icon_192.png">
 <link rel="apple-touch-icon" href="icon_114.png" />
 <style>
@@ -54,8 +56,6 @@
   </div>
 </div>
 <script>  
-document.body.requestFullscreen();
-  
 var date;
 var secElem = document.getElementById("sec");
 var minElem = document.getElementById("min");
